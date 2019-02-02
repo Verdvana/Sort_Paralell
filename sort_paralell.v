@@ -180,7 +180,7 @@ begin
 			end
 end
 	//相加模块，mid（i）的值代表着in（i）所在输出数组中的位置，（第二个时钟）
-always@(posedge clk)
+always@(posedge clk or negedge rst_n)
 begin
 	if(!rst_n)
 		begin
@@ -210,7 +210,7 @@ begin
 end
 		
 		//输出模块，将排序好的数据放入输出数组中（第三个时钟）
-always@(posedge clk)
+always@(posedge clk or negedge rst_n)
 begin
 	if(!rst_n)
 		begin
@@ -242,7 +242,7 @@ begin
 end
 
 
-always@(posedge clk)
+always@(posedge clk or negedge rst_n)
 begin
 	if(!rst_n)
 		begin
@@ -258,7 +258,7 @@ begin
 			complete <= 0;
 		end
 		
-	if(out_start == 1)
+	else if(out_start == 1)
 		begin
 			out0 <= out_temp[0];
 			out1 <= out_temp[1];
